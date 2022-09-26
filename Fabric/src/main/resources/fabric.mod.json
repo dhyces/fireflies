@@ -1,39 +1,38 @@
 {
     "schemaVersion": 1,
-    "id": "modid",
+    "id": "fireflies10k",
     "version": "${version}",
-  
-    "name": "Example Mod",
-    "description": "This is an example description! Tell everyone what your mod is about!",
+
+    "name": "Fireflies 10K",
+    "description": "Long live the emperor!",
     "authors": [
-      "Me!"
+      "Dhyces"
     ],
     "contact": {
       "homepage": "https://fabricmc.net/",
       "sources": "https://github.com/FabricMC/fabric-example-mod"
     },
-  
-    "license": "CC0-1.0",
+
+    "license": "MIT",
     "icon": "assets/modid/icon.png",
-  
+
     "environment": "*",
     "entrypoints": {
       "main": [
-        "com.example.examplemod.ExampleMod"
+        "dhyces.fireflies10k.FabricFireflies"
+      ],
+      "client": [
+        "dhyces.fireflies10k.client.FabricFirefliesClient"
       ]
     },
     "mixins": [
-      "modid.mixins.json"
+      "fireflies10k.mixins.json"
     ],
-  
+
     "depends": {
-      "fabricloader": ">=0.13",
+      "fabricloader": ">=0.14",
       "fabric": "*",
       "minecraft": "1.18.x",
       "java": ">=17"
-    },
-    "suggests": {
-      "another-mod": "*"
     }
   }
-  
