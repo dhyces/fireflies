@@ -3,11 +3,11 @@ plugins {
 }
 
 registrationUtils {
-	group 'dhyces.fireflies10k'
+	group 'dhyces.fireflies10k.registration'
 	projects {
-		Fabric { type 'fabric' } // The fabric project
-		Forge { type 'forge' } // The forge project
-		Common { type 'common' } // The common project
+		Fabric { type 'fabric'; project ':Fabric' } // The fabric project
+		Forge { type 'forge'; project ':Forge' } // The forge project
+		Common { type 'common'; project ':Common' } // The common project
 	 }
 }
 
