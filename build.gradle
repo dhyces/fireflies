@@ -1,3 +1,16 @@
+plugins {
+	id 'com.matyrobbrt.mc.registrationutils' version '0.2.7'
+}
+
+registrationUtils {
+	group 'dhyces.fireflies10k'
+	projects {
+		Fabric { type 'fabric' } // The fabric project
+		Forge { type 'forge' } // The forge project
+		Common { type 'common' } // The common project
+	 }
+}
+
 subprojects {
     
     apply plugin: 'java'
