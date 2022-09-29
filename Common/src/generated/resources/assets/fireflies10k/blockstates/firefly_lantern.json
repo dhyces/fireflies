@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "fireflies=1": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "fireflies=2": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "fireflies=3": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "fireflies=4": {
+      "model": "fireflies10k:block/firefly_lantern"
+    }
+  }
+}

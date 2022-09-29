@@ -1,0 +1,85 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/lantern",
+	"textures": {
+		"0": "fireflies10k:block/glass_bottle",
+		"1": "fireflies10k:block/rod",
+		"particle": "fireflies10k:block/glass_bottle"
+	},
+	"elements": [
+		{
+			"name": "base",
+			"from": [4, 0, 4],
+			"to": [12, 6, 12],
+			"faces": {
+				"north": {"uv": [0, 7, 8, 13], "texture": "#0"},
+				"east": {"uv": [0, 7, 8, 13], "texture": "#0"},
+				"south": {"uv": [0, 7, 8, 13], "texture": "#0"},
+				"west": {"uv": [0, 7, 8, 13], "texture": "#0"},
+				"up": {"uv": [8, 0, 16, 8], "texture": "#0"},
+				"down": {"uv": [8, 8, 16, 16], "texture": "#0"}
+			}
+		},
+		{
+			"name": "neck",
+			"from": [6, 6, 6],
+			"to": [10, 13, 10],
+			"faces": {
+				"north": {"uv": [0, 0, 4, 7], "texture": "#0"},
+				"east": {"uv": [0, 0, 4, 7], "texture": "#0"},
+				"south": {"uv": [0, 0, 4, 7], "texture": "#0"},
+				"west": {"uv": [0, 0, 4, 7], "texture": "#0"},
+				"up": {"uv": [4, 0, 8, 4], "texture": "#0"},
+				"down": {"uv": [0, 16, 0, 16], "texture": "#0", "cullface": "down"}
+			}
+		},
+		{
+			"name": "thingy",
+			"from": [5.5, 10, 5.5],
+			"to": [10.5, 12, 10.5],
+			"faces": {
+				"north": {"uv": [0, 8, 1, 10], "texture": "#0"},
+				"east": {"uv": [0, 8, 1, 10], "texture": "#0"},
+				"south": {"uv": [0, 8, 1, 10], "texture": "#0"},
+				"west": {"uv": [0, 8, 1, 10], "texture": "#0"},
+				"up": {"uv": [8, 8, 16, 0], "texture": "#0"},
+				"down": {"uv": [8, 0, 16, 8], "texture": "#0"}
+			}
+		},
+		{
+			"name": "chain",
+			"from": [6, 13, 8],
+			"to": [10, 16, 8],
+			"faces": {
+				"north": {"uv": [2, 13, 6, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 0, 3], "texture": "#0"},
+				"south": {"uv": [2, 13, 6, 16], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 3], "texture": "#0"},
+				"up": {"uv": [0, 0, 4, 0], "texture": "#0"},
+				"down": {"uv": [0, 0, 4, 0], "texture": "#0"}
+			}
+		},
+		{
+			"name": "chain2",
+			"from": [8, 13, 7],
+			"to": [8, 16, 9],
+			"rotation": {"angle": 0, "axis": "z", "origin": [8, 14.5, 8]},
+			"faces": {
+				"east": {"uv": [3, 13, 5, 16], "texture": "#0"},
+				"west": {"uv": [3, 13, 5, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 13, 0],
+			"to": [9, 15, 10],
+			"faces": {
+				"north": {"uv": [4, 2, 6, 4], "texture": "#1"},
+				"east": {"uv": [0, 0, 10, 2], "texture": "#1"},
+				"south": {"uv": [4, 2, 6, 4], "texture": "#1"},
+				"west": {"uv": [10, 0, 0, 2], "texture": "#1"},
+				"up": {"uv": [2, 12, 0, 2], "texture": "#1"},
+				"down": {"uv": [4, 2, 2, 12], "texture": "#1"}
+			}
+		}
+	]
+}

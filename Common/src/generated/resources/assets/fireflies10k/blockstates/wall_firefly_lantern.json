@@ -1,0 +1,88 @@
+{
+  "variants": {
+    "facing=down,fireflies=1": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "facing=up,fireflies=1": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "facing=north,fireflies=1": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 180
+    },
+    "facing=south,fireflies=1": {
+      "model": "fireflies10k:block/wall_firefly_lantern"
+    },
+    "facing=west,fireflies=1": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 90
+    },
+    "facing=east,fireflies=1": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 270
+    },
+    "facing=down,fireflies=2": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "facing=up,fireflies=2": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "facing=north,fireflies=2": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 180
+    },
+    "facing=south,fireflies=2": {
+      "model": "fireflies10k:block/wall_firefly_lantern"
+    },
+    "facing=west,fireflies=2": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 90
+    },
+    "facing=east,fireflies=2": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 270
+    },
+    "facing=down,fireflies=3": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "facing=up,fireflies=3": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "facing=north,fireflies=3": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 180
+    },
+    "facing=south,fireflies=3": {
+      "model": "fireflies10k:block/wall_firefly_lantern"
+    },
+    "facing=west,fireflies=3": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 90
+    },
+    "facing=east,fireflies=3": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 270
+    },
+    "facing=down,fireflies=4": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "facing=up,fireflies=4": {
+      "model": "fireflies10k:block/firefly_lantern"
+    },
+    "facing=north,fireflies=4": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 180
+    },
+    "facing=south,fireflies=4": {
+      "model": "fireflies10k:block/wall_firefly_lantern"
+    },
+    "facing=west,fireflies=4": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 90
+    },
+    "facing=east,fireflies=4": {
+      "model": "fireflies10k:block/wall_firefly_lantern",
+      "y": 270
+    }
+  }
+}
