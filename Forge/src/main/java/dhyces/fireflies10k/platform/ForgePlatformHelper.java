@@ -1,7 +1,7 @@
 package dhyces.fireflies10k.platform;
 
 import dhyces.fireflies10k.Register;
-import dhyces.fireflies10k.client.blockentity.WallFireflyLanternBER;
+import dhyces.fireflies10k.client.blockentity.FireflyLanternBER;
 import dhyces.fireflies10k.client.entity.FirefliesRenderer;
 import dhyces.fireflies10k.entity.FirefliesEntity;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -40,13 +40,12 @@ public class ForgePlatformHelper implements PlatformHelper {
     private void clientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
             ItemBlockRenderTypes.setRenderLayer(Register.FIREFLY_LANTERN_BLOCK.get(), RenderType.cutout());
-            ItemBlockRenderTypes.setRenderLayer(Register.WALL_FIREFLY_LANTERN_BLOCK.get(), RenderType.cutout());
         });
     }
 
     private void entityRendererEvent(final EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(Register.FIREFLIES.get(), FirefliesRenderer::new);
-        event.registerBlockEntityRenderer(Register.WALL_FIREFLY_LANTERN_BE.get(), WallFireflyLanternBER::new);
+        event.registerBlockEntityRenderer(Register.FIREFLY_LANTERN_BE.get(), FireflyLanternBER::new);
     }
 
     private void attributeEntityEvent(final EntityAttributeCreationEvent event) {

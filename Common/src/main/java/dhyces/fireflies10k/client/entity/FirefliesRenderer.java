@@ -6,6 +6,7 @@ import com.mojang.math.Quaternion;
 import com.mojang.math.Vector3f;
 import dhyces.fireflies10k.CommonFireflies;
 import dhyces.fireflies10k.entity.FirefliesEntity;
+import dhyces.fireflies10k.firefly.BasicFirefly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LightTexture;
@@ -34,7 +35,7 @@ public class FirefliesRenderer extends EntityRenderer<FirefliesEntity> {
     public void render(@NotNull FirefliesEntity entity, float entityYaw, float partialTick, @NotNull PoseStack poseStack,
                        @NotNull MultiBufferSource bufferSource, int packedLight) {
         var buffer = bufferSource.getBuffer(RenderType.itemEntityTranslucentCull(getTextureLocation(entity)));
-        for (FirefliesEntity.Firefly firefly : entity.fireflies) {
+        for (BasicFirefly firefly : entity.fireflies) {
             var pos = firefly.getOldPosition().lerp(firefly.getPosition(), partialTick);
             poseStack.pushPose();
             poseStack.translate(pos.x, pos.y, pos.z);
@@ -72,10 +73,10 @@ public class FirefliesRenderer extends EntityRenderer<FirefliesEntity> {
         RenderSystem.lineWidth(3);
         var buffer = Tesselator.getInstance().getBuilder();
         buffer.begin(VertexFormat.Mode.DEBUG_LINES, DefaultVertexFormat.POSITION_COLOR);
-        for (FirefliesEntity.Firefly firefly : entity.fireflies) {
+        for (BasicFirefly firefly : entity.fireflies) {
             var pos = firefly.getOldPosition().lerp(firefly.getPosition(), partialTick);
             var worldPos = firefly.getPosition().add(entity.getX(), entity.getY(), entity.getZ());
-            var entityEyePos = new Vec3(entity.getX(), entity.getEyeY(), entity.getZ());
+            var entityEyePos = new Vec3(entity.getX(), entity.getY() + firefly.getOrigin().y, entity.getZ());
             var toOrigin = worldPos.vectorTo(entityEyePos);
             var vel = firefly.getVelocity().normalize();
 

@@ -3,7 +3,7 @@ package dhyces.fireflies10k.client.blockentity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Vector3f;
-import dhyces.fireflies10k.blockentity.WallFireflyLanternBlockEntity;
+import dhyces.fireflies10k.blockentity.FireflyLanternBlockEntity;
 import dhyces.fireflies10k.client.entity.FirefliesRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -13,18 +13,18 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import org.jetbrains.annotations.NotNull;
 
-public class WallFireflyLanternBER implements BlockEntityRenderer<WallFireflyLanternBlockEntity> {
+public class FireflyLanternBER implements BlockEntityRenderer<FireflyLanternBlockEntity> {
 
     private static final float FIREFLY_WIDTH = 6F;
     private static final float FIREFLY_HEIGHT = 6F;
     private static final float TEXTURE_WIDTH = 16F;
     private static final float TEXTURE_HEIGHT = 48F;
 
-    public WallFireflyLanternBER(BlockEntityRendererProvider.Context context) {
+    public FireflyLanternBER(BlockEntityRendererProvider.Context context) {
     }
 
     @Override
-    public void render(@NotNull WallFireflyLanternBlockEntity wallFireflyLanternBlockEntity, float partialTick, @NotNull PoseStack poseStack, @NotNull MultiBufferSource multiBufferSource, int combinedLight, int combinedOverlay) {
+    public void render(@NotNull FireflyLanternBlockEntity fireflyLanternBlockEntity, float partialTick, @NotNull PoseStack poseStack, @NotNull MultiBufferSource multiBufferSource, int combinedLight, int combinedOverlay) {
         var buffer = multiBufferSource.getBuffer(RenderType.entityTranslucentCull(FirefliesRenderer.FIREFLIES_TEXTURE));
         poseStack.pushPose();
         poseStack.translate(0.5, 0.1, 0.5);

@@ -17,9 +17,6 @@ public class BlockStateModelDatagen extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         getVariantBuilder(Register.FIREFLY_LANTERN_BLOCK.get()).forAllStates(blockState -> {
-            return ConfiguredModel.builder().modelFile(models().getExistingFile(CommonFireflies.id("firefly_lantern"))).build();
-        });
-        getVariantBuilder(Register.WALL_FIREFLY_LANTERN_BLOCK.get()).forAllStates(blockState -> {
             var direction = blockState.getValue(BlockStateProperties.FACING);
             var isVertical = direction.getAxis().isVertical();
             if (isVertical) {

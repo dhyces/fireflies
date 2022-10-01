@@ -2,11 +2,11 @@ package dhyces.fireflies10k.entity;
 
 import com.google.common.collect.Sets;
 import dhyces.fireflies10k.Register;
+import dhyces.fireflies10k.firefly.BasicFirefly;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -27,7 +27,7 @@ public class FirefliesEntity extends Mob {
     private static final EntityDataAccessor<Integer> NUM_OF_FIREFLIES = SynchedEntityData.defineId(FirefliesEntity.class, EntityDataSerializers.INT);
     public static final String FIREFLY_COUNT_TAG = "FireflyCount";
 
-    public final Set<Firefly> fireflies = Sets.newHashSet();
+    public final Set<EntityFirefly> fireflies = Sets.newHashSet();
 
     protected FirefliesEntity(EntityType<? extends Mob> entityType, Level level) {
         super(entityType, level);
@@ -35,7 +35,7 @@ public class FirefliesEntity extends Mob {
 
     public FirefliesEntity(Level level) {
         super(Register.FIREFLIES.get(), level);
-        this.fireflies.add(new Firefly(new Vec3(0,this.getEyeY(),0), new Vec3(0,0.01,0)));
+        this.fireflies.add(new EntityFirefly(level, new Vec3(0, this.getBbHeight()/2F, 0), new Vec3(0,this.getEyeY(),0), new Vec3(0,0.01,0)));
     }
 
     @Override
@@ -44,7 +44,7 @@ public class FirefliesEntity extends Mob {
         if (fireflies.isEmpty()) {
             this.remove(RemovalReason.DISCARDED);
         }
-        fireflies.forEach(Firefly::tick);
+        fireflies.forEach(EntityFirefly::tick);
         for (Entity otherEntity : level.getEntities(this, getBoundingBox(), entity -> entity instanceof FirefliesEntity)) {
             var other = (FirefliesEntity)otherEntity;
             this.fireflies.addAll(other.fireflies);
@@ -165,7 +165,7 @@ public class FirefliesEntity extends Mob {
         while (change != 0 && fireflies.size() != fireflyCount) {
             if (change > 0) {
                 var pos = Math.sin((float) fireflies.size() / (float) fireflyCount);
-                fireflies.add(new Firefly(new Vec3(pos, pos, pos), new Vec3(pos, pos, pos).normalize().scale(0.035)));
+                fireflies.add(new EntityFirefly(level, new Vec3(0, this.getBbHeight()/2F, 0), new Vec3(pos, pos, pos), new Vec3(pos, pos, pos).normalize().scale(0.035)));
             } else {
                 removeFirefly(RemovalReason.DISCARDED);
             }
@@ -201,81 +201,18 @@ public class FirefliesEntity extends Mob {
                 .add(Attributes.ATTACK_KNOCKBACK);
     }
 
-    public class Firefly {
+    class EntityFirefly extends BasicFirefly {
 
-        Vec3 position;
-        Vec3 oldPosition;
-        Vec3 velocity;
-        Vec3 intendedVelocity;
-        int blinkTime = 0;
-        long nextBlink = 0L;
-
-        static final float MAX_VERTICAL_DIST = 0.65F;
-        float horizontalDist;
-
-        Firefly(Vec3 position, Vec3 velocity) {
-            this.position = position;
-            this.oldPosition = position;
-            this.velocity = velocity;
-            this.intendedVelocity = velocity;
+        protected EntityFirefly(Level level, Vec3 origin, Vec3 position, Vec3 velocity) {
+            super(level, origin, position, velocity);
         }
 
+        @Override
         public void tick() {
             if (isNoAi()) {
                 return;
             }
-            this.oldPosition = position;
-            if (blinkTime > 0) {
-                blinkTime++;
-                if (blinkTime >= 14) {
-                    blinkTime = 0;
-                }
-            }
-            if (nextBlink < level.getGameTime()) {
-                nextBlink = level.getGameTime() + random.nextLong(1000);
-                blinkTime = 1;
-            }
-            var entityMiddle = FirefliesEntity.this.getBbHeight()/2F;
-            var entityMiddlePosition = new Vec3(0, entityMiddle, 0);
-            var distToMiddleVec = position.vectorTo(entityMiddlePosition);
-            if (distToMiddleVec.horizontalDistance() > FirefliesEntity.this.getBoundingBox().getXsize() / 2D) {
-                var velNorm = intendedVelocity.normalize();
-                var toOriginNorm = distToMiddleVec.normalize();
-                var dotProd = velNorm.dot(toOriginNorm);
-                if (dotProd < 0.3) {
-                    var halfAngle = (float)Math.acos(dotProd)/2F;
-                    this.intendedVelocity = this.velocity.xRot(random.nextInt(2) * halfAngle).yRot(random.nextInt(2) * halfAngle).zRot(random.nextInt(2) * halfAngle);
-                }
-            }
-            if (Math.abs(distToMiddleVec.y) > MAX_VERTICAL_DIST && this.intendedVelocity.normalize().dot(distToMiddleVec.normalize()) < 0) {
-                this.intendedVelocity = this.velocity.zRot(1.5F);
-            }
-            this.velocity = velocity.lerp(intendedVelocity, 0.05);
-            this.velocity = position.y <= 0 ? this.velocity.multiply(1, 0, 1) : this.velocity;
-            if (Mth.equal(this.intendedVelocity.length(), 0)) {
-                this.intendedVelocity = new Vec3(0.05, 0.05, 0.05);
-            }
-            this.position = position.add(velocity.x, velocity.y, velocity.z);
-        }
-
-        public void remove(RemovalReason reason) {
-
-        }
-
-        public int getBlinkTime() {
-            return blinkTime;
-        }
-
-        public Vec3 getPosition() {
-            return position;
-        }
-
-        public Vec3 getOldPosition() {
-            return oldPosition;
-        }
-
-        public Vec3 getVelocity() {
-            return velocity;
+            super.tick();
         }
     }
 }

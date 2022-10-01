@@ -1,7 +1,7 @@
 package dhyces.fireflies10k.platform;
 
 import dhyces.fireflies10k.Register;
-import dhyces.fireflies10k.client.blockentity.WallFireflyLanternBER;
+import dhyces.fireflies10k.client.blockentity.FireflyLanternBER;
 import dhyces.fireflies10k.client.entity.FirefliesRenderer;
 import dhyces.fireflies10k.entity.FirefliesEntity;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
@@ -33,7 +33,7 @@ public class FabricPlatformHelper implements PlatformHelper {
     @Override
     public void clientInit() {
         EntityRendererRegistry.register(Register.FIREFLIES.get(), FirefliesRenderer::new);
-        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), Register.FIREFLY_LANTERN_BLOCK.get(), Register.WALL_FIREFLY_LANTERN_BLOCK.get());
-        BlockEntityRendererRegistry.register(Register.WALL_FIREFLY_LANTERN_BE.get(), WallFireflyLanternBER::new);
+        BlockRenderLayerMap.INSTANCE.putBlocks(RenderType.cutout(), Register.FIREFLY_LANTERN_BLOCK.get());
+        BlockEntityRendererRegistry.register(Register.FIREFLY_LANTERN_BE.get(), FireflyLanternBER::new);
     }
 }
