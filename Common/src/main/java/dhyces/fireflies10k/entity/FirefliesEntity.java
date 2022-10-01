@@ -6,6 +6,7 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
@@ -209,7 +210,7 @@ public class FirefliesEntity extends Mob {
         int blinkTime = 0;
         long nextBlink = 0L;
 
-        static final float VERTICAL_DIST = 0.65F;
+        static final float MAX_VERTICAL_DIST = 0.65F;
         float horizontalDist;
 
         Firefly(Vec3 position, Vec3 velocity) {
@@ -246,11 +247,14 @@ public class FirefliesEntity extends Mob {
                     this.intendedVelocity = this.velocity.xRot(random.nextInt(2) * halfAngle).yRot(random.nextInt(2) * halfAngle).zRot(random.nextInt(2) * halfAngle);
                 }
             }
-            if (Math.abs(distToMiddleVec.y) > VERTICAL_DIST && this.intendedVelocity.normalize().dot(distToMiddleVec.normalize()) < 0) {
+            if (Math.abs(distToMiddleVec.y) > MAX_VERTICAL_DIST && this.intendedVelocity.normalize().dot(distToMiddleVec.normalize()) < 0) {
                 this.intendedVelocity = this.velocity.zRot(1.5F);
             }
             this.velocity = velocity.lerp(intendedVelocity, 0.05);
             this.velocity = position.y <= 0 ? this.velocity.multiply(1, 0, 1) : this.velocity;
+            if (Mth.equal(this.intendedVelocity.length(), 0)) {
+                this.intendedVelocity = new Vec3(0.05, 0.05, 0.05);
+            }
             this.position = position.add(velocity.x, velocity.y, velocity.z);
         }
 
