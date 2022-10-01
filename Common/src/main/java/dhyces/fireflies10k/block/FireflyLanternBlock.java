@@ -1,7 +1,10 @@
 package dhyces.fireflies10k.block;
 
+import dhyces.fireflies10k.Register;
 import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -10,6 +13,8 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.Random;
 
 public class FireflyLanternBlock extends Block {
 
@@ -25,6 +30,16 @@ public class FireflyLanternBlock extends Block {
     @Override
     public boolean propagatesSkylightDown(@NotNull BlockState blockState, @NotNull BlockGetter level, @NotNull BlockPos blockPos) {
         return true;
+    }
+
+    @Override
+    public void animateTick(BlockState blockState, Level level, BlockPos blockPos, Random random) {
+        super.animateTick(blockState, level, blockPos, random);
+        if (random.nextFloat() > 0.5) {
+            var xOffset = (random.nextFloat() - 0.5) * 0.25;
+            var zOffset = (random.nextFloat() - 0.5) * 0.25;
+            level.addParticle(Register.FIREFLY_PARTICLE.get(), blockPos.getX() + 0.5 + xOffset, blockPos.getY() + 0.1, blockPos.getZ() + 0.5 + zOffset, -1, -1, -1);
+        }
     }
 
     @Override
